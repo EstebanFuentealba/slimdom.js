@@ -15,16 +15,19 @@ import {
 	expectArity,
 	throwInUseAttributeError,
 	throwInvalidCharacterError,
+	throwNoModificationAllowedError,
 	throwNotFoundError
 } from './util/errorHelpers';
 import {
 	matchesNameProduction,
 	validateAndExtract,
 	locateNamespacePrefix,
+	HTML_NAMESPACE,
 	XMLNS_NAMESPACE
 } from './util/namespaceHelpers';
-import { NodeType } from './util/NodeType';
-import { asNullableString, asObject } from './util/typeHelpers';
+import { isNodeOfType, NodeType } from './util/NodeType';
+import { getNodeDocument } from './util/treeHelpers';
+import { asNullableString, asObject, treatNullAsEmptyString } from './util/typeHelpers';
 
 /**
  * 3.9. Interface Element
@@ -468,6 +471,25 @@ export default class Element extends Node
 	}
 
 	/**
+	 * Can be set, to replace the contents of the element with nodes parsed from the given string.
+	 */
+	public set innerHTML(value: string) {
+		value = treatNullAsEmptyString(value);
+
+		// 1. Let fragment be the result of invoking the fragment parsing algorithm with the new value as markup, and
+		// the context object as the context element.
+		throw new Error('Not implemented');
+
+		// 2. If the context object is a template element, then let context object be the template's template contents
+		// (a DocumentFragment).
+		// NOTE: Setting innerHTML on a template element will replace all the nodes in its template contents
+		// (template.content) rather than its children.
+		// (html documents not implemented)
+
+		// 3. Replace all with fragment within the context object.
+	}
+
+	/**
 	 * Returns a fragment of HTML or XML that represents the element and its contents.
 	 */
 	public get outerHTML() {
@@ -475,6 +497,41 @@ export default class Element extends Node
 		// whose only child is the context object providing true for the require well-formed flag
 		// (this might throw an exception instead of returning a string).
 		return serializeFragment(this, true, true);
+	}
+
+	/**
+	 * Can be set, to replace the element with nodes parsed from the given string.
+	 */
+	public set outerHTML(value: string) {
+		value = treatNullAsEmptyString(value);
+
+		// 1. Let parent be the context object's parent.
+		let parent = this.parentNode;
+
+		// 2. If parent is null, terminate these steps. There would be no way to obtain a reference to the nodes created
+		// even if the remaining steps were run.
+		if (parent === null) {
+			return;
+		}
+
+		// 3. If parent is a Document, throw a "NoModificationAllowedError" DOMException.
+		if (isNodeOfType(parent, NodeType.DOCUMENT_NODE)) {
+			throwNoModificationAllowedError('Can not set outerHTML for the document element');
+		}
+
+		// 4. If parent is a DocumentFragment, let parent be a new Element with:
+		// - body as its local name,
+		// - The HTML namespace as its namespace, and
+		// - The context object's node document as its node document.
+		if (isNodeOfType(parent, NodeType.DOCUMENT_FRAGMENT_NODE)) {
+			parent = createElement(getNodeDocument(this), 'body', HTML_NAMESPACE);
+		}
+
+		// 5. Let fragment be the result of invoking the fragment parsing algorithm with the new value as markup, and
+		// parent as the context element.
+		throw new Error('Not implemented');
+
+		// 6. Replace the context object with fragment within the context object's parent.
 	}
 }
 

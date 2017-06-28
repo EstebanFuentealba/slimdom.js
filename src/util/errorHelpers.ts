@@ -47,6 +47,10 @@ export function throwNamespaceError(message: string): never {
 	throw createDOMException('NamespaceError', 14, message);
 }
 
+export function throwNoModificationAllowedError(message: string): never {
+	throw createDOMException('NoModificationAllowedError', 7, message);
+}
+
 export function throwNotFoundError(message: string): never {
 	throw createDOMException('NotFoundError', 8, message);
 }
