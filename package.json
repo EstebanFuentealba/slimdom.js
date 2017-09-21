@@ -49,26 +49,6 @@
 		"ts-jest": "~26.5.0",
 		"typescript": "^4.1.3"
 	},
-	"jest": {
-		"transform": {
-			"^.+\\.tsx?$": "ts-jest"
-		},
-		"testRegex": "(\\.(tests))\\.(tsx?|jsx?)$",
-		"moduleFileExtensions": [
-			"ts",
-			"tsx",
-			"js",
-			"json",
-			"jsx"
-		],
-		"collectCoverageFrom": [
-			"src/**/*.ts"
-		],
-		"coverageReporters": [
-			"html",
-			"text"
-		]
-	},
 	"prettier": {
 		"printWidth": 100,
 		"singleQuote": true,
