@@ -22,7 +22,7 @@
 		"download-wpt": "ts-node test/web-platform-tests/download-wpt.ts git@github.com:web-platform-tests/wpt.git temp/wpt",
 		"prepare": "npm run build",
 		"test": "jest --coverage --verbose",
-		"test:quiet": "jest",
+		"test:quiet": "jest --clearCache && jest",
 		"test:debug": "node --inspect --debug-brk node_modules/jest/bin/jest.js --runInBand"
 	},
 	"files": [

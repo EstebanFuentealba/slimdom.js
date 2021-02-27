@@ -11,6 +11,51 @@ import { BlockReasonByTestName } from './blocklist';
 export function parseHtml(html: string): slimdom.Document {
 	const document = new slimdom.Document();
 	const treeAdapter = DomTreeAdapter(document);
+	// Patch DomTreeAdapter's createElement as the tests require us to bypass name restrictions
+	treeAdapter.createElement = (
+		tagName: string,
+		namespaceUri: string | null,
+		attrs: { name: string; value: string }[]
+	) => {
+		const [prefix, localName] = tagName.includes(':') ? tagName.split(':') : [null, tagName];
+		const element = slimdom.unsafeCreateElement(document, localName, namespaceUri, prefix);
+		attrs.forEach((attr) => {
+			// Parse5 doesn't really seem to do much with attribute namespaces - let's assume they
+			// are all unprefixed and therefore in the null namespace...
+			const attribute = slimdom.unsafeCreateAttribute(
+				null,
+				null,
+				attr.name,
+				attr.value,
+				element
+			);
+			attribute.ownerDocument = document;
+			slimdom.unsafeAppendAttribute(attribute, element);
+		});
+		return element;
+	};
+	// Patch DomTreeAdapter's setDocumentType to preserve node ordering under the document node
+	// see https://github.com/nrkn/dom-treeadapter/issues/4
+	treeAdapter.setDocumentType = (
+		document: slimdom.Document,
+		name: string,
+		publicId: string | null,
+		systemId: string | null
+	) => {
+		const doctype = document.implementation.createDocumentType(
+			name,
+			publicId || '',
+			systemId || ''
+		);
+
+		if (document.doctype) {
+			document.replaceChild(doctype, document.doctype);
+		} else if (document.documentElement) {
+			document.insertBefore(doctype, document.documentElement);
+		} else {
+			document.appendChild(doctype);
+		}
+	};
 	return parse(html, { treeAdapter }) as slimdom.Document;
 }
 
@@ -85,6 +130,10 @@ function createStubEnvironment(
 			}
 		},
 
+		// WPT tests check if error constructors match the global DOMException, but in slimdom
+		// these are all plain Error instances with a few extra properties
+		DOMException: Error,
+
 		...domInterfaces,
 	};
 	global.window = global;
@@ -124,17 +173,17 @@ export function runTest(
 				tests: any[],
 				testStatus: any
 			) {
-				// TODO: Seems to be triggered by duplicate names in the createDocument tests
-				//expect(testStatus.status).toBe(testStatus.OK);
+				const errors: string[] = [];
 				tests.forEach((test) => {
 					// Ignore results of blacklisted tests
 					if (!blockReasonByTestName[test.name]) {
 						if (test.status !== testStatus.OK) {
-							console.log(`${test.name}: ${test.message}`);
+							errors.push(`${test.name}: ${test.message}`);
 						}
-						expect(test.status).toBe(testStatus.OK);
 					}
 				});
+				expect(errors.join('\n')).toBe('');
+				expect(testStatus.status).toBe(testStatus.OK);
 				done();
 			});
 

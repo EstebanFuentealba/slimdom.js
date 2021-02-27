@@ -7,20 +7,16 @@ const blocklist: Blocklist = {
 	'dom/lists': 'DOMTokenList (Element#classList) not implemented',
 	'dom/ranges': 'TESTING',
 	'dom/nodes/Document-contentType': 'Document#contentType not implemented',
+	'dom/nodes/aria-attribute-reflection.tentative.html': 'ARIA properties not implemented',
+	'dom/nodes/aria-element-reflection.tentative.html': 'ARIA properties not implemented',
 	'dom/nodes/attributes.html': {
-		'setAttribute should lowercase its name argument (upper case attribute)':
-			'HTML attribute lowercasing not implemented',
-		'setAttribute should lowercase its name argument (mixed case attribute)':
-			'HTML attribute lowercasing not implemented',
 		'Attributes should work in document fragments.':
 			'Element#attributes not implemented as NamedNodeMap',
+		'getAttributeNames tests': 'Element#getAttributeNames not implemented',
 		'Only lowercase attributes are returned on HTML elements (upper case attribute)':
 			'HTML attribute lowercasing not implemented',
 		'Only lowercase attributes are returned on HTML elements (mixed case attribute)':
 			'HTML attribute lowercasing not implemented',
-		'setAttributeNode, if it fires mutation events, should fire one with the new node when resetting an existing attribute (outer shell)':
-			'Mutation events not implemented',
-		'getAttributeNames tests': 'Element#getAttributeNames not implemented',
 		'Own property correctness with basic attributes':
 			'Element#attributes not implemented as NamedNodeMap',
 		'Own property correctness with non-namespaced attribute before same-name namespaced one':
@@ -35,8 +31,22 @@ const blocklist: Blocklist = {
 			'Element#attributes not implemented as NamedNodeMap',
 		'Own property names should include all qualified names for an HTML element in a non-HTML document':
 			'Element#attributes not implemented as NamedNodeMap',
+		'setAttribute should lowercase its name argument (upper case attribute)':
+			'HTML attribute lowercasing not implemented',
+		'setAttribute should lowercase its name argument (mixed case attribute)':
+			'HTML attribute lowercasing not implemented',
+		'setAttributeNode, if it fires mutation events, should fire one with the new node when resetting an existing attribute (outer shell)':
+			'Mutation events not implemented',
+		'toggleAttribute should lowercase its name argument (mixed case attribute)':
+			'HTML attribute lowercasing not implemented',
+		'toggleAttribute should lowercase its name argument (upper case attribute)':
+			'HTML attribute lowercasing not implemented',
+		'Toggling element with inline style should make inline style disappear':
+			'style property not implemented',
 	},
 	'dom/nodes/case.html': 'HTML case behavior not implemented',
+	'dom/nodes/Comment-constructor.html':
+		'ownerDocument does not match document used in test runner',
 	'dom/nodes/Document-characterSet-normalization.html': 'Document#characterSet not implemented',
 	'dom/nodes/Document-constructor.html': {
 		'new Document(): URL parsing': 'HTMLAnchorElement not implemented',
@@ -44,15 +54,49 @@ const blocklist: Blocklist = {
 	'dom/nodes/Document-createAttribute.html': {
 		'HTML document.createAttribute("TITLE")': 'HTML attribute lowercasing not implemented',
 	},
+	'dom/nodes/Document-createCDATASection.html': 'HTML documents not implemented',
 	'dom/nodes/Document-createElement.html': 'Document load using iframe not implemented',
 	'dom/nodes/Document-createElement-namespace.html': 'DOMParser / contentType not implemented',
 	'dom/nodes/Document-createElement-namespace-tests':
 		'Document load using iframe not implemented',
 	'dom/nodes/Document-createElementNS.html': 'Document load using iframe not implemented',
 	'dom/nodes/Document-createEvent.html': 'Document#createEvent not implemented',
+	'dom/nodes/Document-createEvent.https.html': 'Document#createEvent not implemented',
 	'dom/nodes/Document-createTreeWalker.html': 'Document#createTreeWalker not implemented',
 	'dom/nodes/Document-getElementById.html': 'Document#getElementById not implemented',
+	'dom/nodes/Document-getElementsByTagName.html': {
+		'Element in HTML namespace, no prefix, non-ascii characters in name':
+			'HTML casing not implemented',
+		'Element in HTML namespace, prefix, non-ascii characters in name':
+			'HTML casing not implemented',
+		'getElementsByTagName() should be a live collection':
+			'Result is not live in this implementation',
+		Interfaces: 'This implementation uses arrays instead of collection types',
+		"Shouldn't be able to set unsigned properties on a HTMLCollection (non-strict mode)":
+			'This implementation uses arrays instead of collection types',
+		"Shouldn't be able to set unsigned properties on a HTMLCollection (strict mode)":
+			'This implementation uses arrays instead of collection types',
+		'Should be able to set expando shadowing a proto prop (item)':
+			'This implementation uses arrays instead of collection types',
+		'Should be able to set expando shadowing a proto prop (namedItem)':
+			'This implementation uses arrays instead of collection types',
+		'hasOwnProperty, getOwnPropertyDescriptor, getOwnPropertyNames':
+			'This implementation uses arrays instead of collection types',
+		'HTML element with uppercase tagName never matches in HTML Documents':
+			'HTML casing not implemented',
+	},
+	'dom/nodes/Document-getElementsByTagName-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Document-getElementsByTagNameNS.html': {
+		'Document.getElementsByTagNameNS':
+			'This implementation uses arrays instead of collection types',
+		'getElementsByTagNameNS() should be a live collection':
+			'Result is not live in this implementation',
+	},
+	'dom/nodes/Document-URL.html': 'Document#URL not implemented',
 	'dom/nodes/Document-URL.sub.html': 'Document#URL not implemented',
+	'dom/nodes/DocumentFragment-constructor.html':
+		'ownerDocument does not match document used in test runner',
 	'dom/nodes/DocumentType-literal.html': 'Depends on HTML parsing',
 	'dom/nodes/DOMImplementation-createDocument.html': {
 		'createDocument test: metadata for "http://www.w3.org/1999/xhtml","",null':
@@ -60,17 +104,35 @@ const blocklist: Blocklist = {
 		'createDocument test: metadata for "http://www.w3.org/2000/svg","",null':
 			'SVG contentType not implemented',
 	},
+	'dom/nodes/DOMImplementation-createDocument-with-null-browsing-context-crash.html':
+		'Automatic globals by element id not implemented',
 	'dom/nodes/DOMImplementation-createHTMLDocument.html':
 		'HTML*Element interfaces not implemented',
+	'dom/nodes/DOMImplementation-createHTMLDocument-with-null-browsing-context-crash.html':
+		'Automatic globals by element id not implemented',
+	'dom/nodes/DOMImplementation-createHTMLDocument-with-saved-implementation.html':
+		'iframe not implemented',
 	'dom/nodes/DOMImplementation-hasFeature.html': 'DOMImplementation#hasFeature not implemented',
+	'dom/nodes/Element-childElement-null-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-childElementCount-dynamic-add-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-childElementCount-dynamic-remove-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-childElementCount-nochild-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-children.html': 'Element#children not implemented as HTMLCollection',
 	'dom/nodes/Element-classlist.html': 'Element#classList not implemented',
 	'dom/nodes/Element-closest.html': 'Element#closest not implemented',
+	'dom/nodes/Element-firstElementChild-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-getElementsByClassName.html':
 		'Element#getElementsByClassName not implemented',
 	'dom/nodes/Element-insertAdjacentElement.html': 'Element#insertAdjacentElement not implemented',
 	'dom/nodes/Element-insertAdjacentText.html': 'Element#insertAdjacentText not implemented',
 	'dom/nodes/Element-matches.html': 'Element#matches not implemented',
+	'dom/nodes/Element-siblingElement-null-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-tagName.html': 'HTML tagName uppercasing not implemented',
 	'dom/nodes/Element-webkitMatchesSelector.html': 'Element#webkitMatchesSelector not implemented',
 	'dom/nodes/insert-adjacent.html':
@@ -288,7 +350,12 @@ const blocklist: Blocklist = {
 		'createElement(wbr)': 'HTMLElement interfaces not implemented',
 		'createElementNS HTML': 'HTMLElement interfaces not implemented',
 		'node with children': 'HTMLElement interfaces not implemented',
+		'Node with custom prototype': 'HTMLElement interfaces not implemented',
 	},
+	'dom/nodes/Node-cloneNode-external-stylesheet-no-bc.sub.html':
+		'innerHTML setter not implemented',
+	'dom/nodes/Node-cloneNode-on-inactive-document-crash.html':
+		'Automatic globals by element id not implemented',
 	'dom/nodes/Node-compareDocumentPosition.html': 'Node#compareDocumentPosition not implemented',
 	'dom/nodes/Node-constants.html': {
 		'Constants for createDocumentPosition on Node interface object.':
@@ -301,18 +368,19 @@ const blocklist: Blocklist = {
 			'Node#compareDocumentPosition not implemented',
 	},
 	'dom/nodes/Node-isConnected.html': 'Node#isConnected not implemented',
+	'dom/nodes/Node-isConnected-shadow-dom.html': 'Node#isConnected not implemented',
 	'dom/nodes/Node-isEqualNode.html': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isEqualNode-iframe1.html': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isEqualNode-iframe2.html': 'Node#isEqualNode not implemented',
+	'dom/nodes/Node-isEqualNode-xhtml.html': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isSameNode.html': 'Node#isSameNode not implemented',
 	'dom/nodes/NodeList-Iterable.html': 'NodeList not implemented',
 	'dom/nodes/Node-nodeName.html': {
 		'For Element nodes, nodeName should return the same as tagName.':
 			'HTML tagName uppercasing not implemented',
 	},
-	'dom/nodes/Node-parentNode.html': {
-		'Removed iframe': 'Document load using iframe not implemented',
-	},
+	'dom/nodes/Node-parentNode.html': 'Document load using iframe not implemented',
+	'dom/nodes/Node-properties.html': 'id and className properties not implemented',
 	'dom/nodes/Node-replaceChild.html': {
 		'replaceChild should work in the presence of mutation events.':
 			'Mutation events not implemented',
@@ -332,9 +400,14 @@ const blocklist: Blocklist = {
 		'ParentNode#querySelector* not implemented',
 	'dom/nodes/ParentNode-querySelectors-space-and-dash-attribute-value.html':
 		'ParentNode#querySelector* not implemented',
+	'dom/nodes/ProcessingInstruction-literal-1.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/ProcessingInstruction-literal-2.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/query-target-in-load-event.html': 'ParentNode#querySelector not implemented',
 	'dom/nodes/remove-unscopable.html': 'Methods not implemented',
 	'dom/nodes/rootNode.html': 'Node#getRootNode not implemented',
+	'dom/nodes/Text-constructor.html': 'ownerDocument does not match document used in test runner',
 	'dom/ranges/Range-cloneContents.html': 'Range#cloneContents not implemented',
 	'dom/ranges/Range-deleteContents.html': 'Range#deleteContents not implemented',
 	'dom/ranges/Range-extractContents.html': 'Range#extractContents not implemented',
@@ -342,8 +415,6 @@ const blocklist: Blocklist = {
 	'dom/ranges/Range-stringifier.html': 'Range#toString not implemented',
 	'dom/ranges/Range-surroundContents.html': 'Range#surroundContents not implemented',
 	'dom/traversal': 'NodeIterator and TreeWalker not implemented',
-	'dom/attributes-are-nodes.html':
-		'Errors thrown do not have a constructor in the stubbed environment',
 	'dom/historical.html': 'WebIDL parsing not implemented',
 	'dom/interface-objects.html': 'window not implemented',
 	'dom/interfaces.html': 'WebIDL parsing not implemented',

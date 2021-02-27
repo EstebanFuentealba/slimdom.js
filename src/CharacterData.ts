@@ -9,7 +9,11 @@ import Node from './Node';
 import { getContext } from './context/Context';
 import queueMutationRecord from './mutation-observer/queueMutationRecord';
 import { expectArity, throwIndexSizeError } from './util/errorHelpers';
-import { asUnsignedLong, treatNullAsEmptyString } from './util/typeHelpers';
+import {
+	asUnsignedLong,
+	ifNullActAsIfEmptyString,
+	legacyNullToEmptyString,
+} from './util/typeHelpers';
 import {
 	insertNodesBefore,
 	insertNodesAfter,
@@ -32,7 +36,7 @@ export default abstract class CharacterData
 	}
 
 	public set nodeValue(newValue: string | null) {
-		newValue = treatNullAsEmptyString(newValue);
+		newValue = ifNullActAsIfEmptyString(newValue);
 
 		// Set an existing attribute value with context object and new value.
 		replaceData(this, 0, this.length, newValue);
@@ -43,7 +47,7 @@ export default abstract class CharacterData
 	}
 
 	public set textContent(newValue: string | null) {
-		newValue = treatNullAsEmptyString(newValue);
+		newValue = ifNullActAsIfEmptyString(newValue);
 
 		// Set an existing attribute value with context object and new value.
 		replaceData(this, 0, this.length, newValue);
@@ -126,8 +130,8 @@ export default abstract class CharacterData
 	}
 
 	public set data(newValue: string) {
-		// [TreatNullAs=EmptyString]
-		newValue = treatNullAsEmptyString(newValue);
+		// [LegacyNullToEmptyString]
+		newValue = legacyNullToEmptyString(newValue);
 
 		// replace data with node context object, offset 0, count context object’s length, and data
 		// new value.

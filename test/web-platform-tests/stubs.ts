@@ -33,6 +33,9 @@ Object.defineProperties(slimdom.Document.prototype, {
 	documentURI: {
 		value: 'about:blank',
 	},
+	location: {
+		value: null,
+	},
 	compatMode: {
 		value: 'CSS1Compat',
 	},

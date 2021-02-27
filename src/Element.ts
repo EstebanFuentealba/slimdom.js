@@ -34,7 +34,7 @@ import {
 	XMLNS_NAMESPACE,
 } from './util/namespaceHelpers';
 import { NodeType } from './util/NodeType';
-import { asNullableString, asObject, treatNullAsEmptyString } from './util/typeHelpers';
+import { asNullableString, asObject, ifNullActAsIfEmptyString } from './util/typeHelpers';
 
 /**
  * 3.9. Interface Element
@@ -69,7 +69,7 @@ export default class Element
 	}
 
 	public set textContent(newValue: string | null) {
-		newValue = treatNullAsEmptyString(newValue);
+		newValue = ifNullActAsIfEmptyString(newValue);
 		setTextContentByReplacing(this, newValue);
 	}
 
