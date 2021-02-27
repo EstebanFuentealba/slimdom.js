@@ -139,6 +139,9 @@ export function runTest(
 			});
 
 			stubEnvironment.onLoadCallbacks.forEach((cb) => cb({}));
+			if (typeof stubEnvironment.global.onload === 'function') {
+				stubEnvironment.global.onload({});
+			}
 
 			// "Run" iframes
 			(stubEnvironment.global.frames as any[]).forEach((iframe) => {

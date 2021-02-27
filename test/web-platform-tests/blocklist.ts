@@ -1,12 +1,12 @@
 export type BlockReasonByTestName = Record<string, string>;
 export type Blocklist = Record<string, string | BlockReasonByTestName>;
 const blocklist: Blocklist = {
-	'dom/historical.html': 'WebIDL parsing not implemented',
-	'dom/interface-objects.html': 'window not implemented',
-	'dom/interfaces.html': 'WebIDL parsing not implemented',
+	'dom/abort': 'AbortController not implemented',
 	'dom/collections': 'This implementation uses arrays instead of collection types',
 	'dom/events': 'Events not implemented',
 	'dom/lists': 'DOMTokenList (Element#classList) not implemented',
+	'dom/ranges': 'TESTING',
+	'dom/nodes/Document-contentType': 'Document#contentType not implemented',
 	'dom/nodes/attributes.html': {
 		'setAttribute should lowercase its name argument (upper case attribute)':
 			'HTML attribute lowercasing not implemented',
@@ -41,7 +41,6 @@ const blocklist: Blocklist = {
 	'dom/nodes/Document-constructor.html': {
 		'new Document(): URL parsing': 'HTMLAnchorElement not implemented',
 	},
-	'dom/nodes/Document-contentType': 'Document#contentType not implemented',
 	'dom/nodes/Document-createAttribute.html': {
 		'HTML document.createAttribute("TITLE")': 'HTML attribute lowercasing not implemented',
 	},
@@ -321,6 +320,19 @@ const blocklist: Blocklist = {
 	'dom/nodes/ParentNode-querySelector-All-content.html':
 		'ParentNode#querySelectorAll not implemented',
 	'dom/nodes/ParentNode-querySelector-All.html': 'ParentNode#querySelectorAll not implemented',
+	'dom/nodes/ParentNode-querySelector-case-insensitive.html':
+		'ParentNode#querySelector not implemented',
+	'dom/nodes/ParentNode-querySelector-escapes.html': 'ParentNode#querySelector not implemented',
+	'dom/nodes/ParentNode-querySelector-scope.html': 'ParentNode#querySelector not implemented',
+	'dom/nodes/ParentNode-querySelectorAll-removed-elements.html':
+		'ParentNode#querySelectorAll not implemented',
+	'dom/nodes/ParentNode-querySelectors-exclusive.html':
+		'ParentNode#querySelector* not implemented',
+	'dom/nodes/ParentNode-querySelectors-namespaces.html':
+		'ParentNode#querySelector* not implemented',
+	'dom/nodes/ParentNode-querySelectors-space-and-dash-attribute-value.html':
+		'ParentNode#querySelector* not implemented',
+	'dom/nodes/query-target-in-load-event.html': 'ParentNode#querySelector not implemented',
 	'dom/nodes/remove-unscopable.html': 'Methods not implemented',
 	'dom/nodes/rootNode.html': 'Node#getRootNode not implemented',
 	'dom/ranges/Range-cloneContents.html': 'Range#cloneContents not implemented',
@@ -330,6 +342,12 @@ const blocklist: Blocklist = {
 	'dom/ranges/Range-stringifier.html': 'Range#toString not implemented',
 	'dom/ranges/Range-surroundContents.html': 'Range#surroundContents not implemented',
 	'dom/traversal': 'NodeIterator and TreeWalker not implemented',
+	'dom/attributes-are-nodes.html':
+		'Errors thrown do not have a constructor in the stubbed environment',
+	'dom/historical.html': 'WebIDL parsing not implemented',
+	'dom/interface-objects.html': 'window not implemented',
+	'dom/interfaces.html': 'WebIDL parsing not implemented',
+	'dom/window-extends-event-target.html': 'window not implemented',
 };
 
 export default blocklist;
