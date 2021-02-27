@@ -1,17 +1,46 @@
 import * as path from 'path';
 
-import blacklist from './blacklist';
+import blocklist, { BlockReasonByTestName } from './blocklist';
 
-export default function convertHtmlToTestSuite(src: string, filename: string) {
-	const testSrc = [`describe(${JSON.stringify(filename.replace(/\\/g, '/'))}, () => {`];
+export const PREAMBLE = `
+require("ts-node/register");
+const { runTest } = require(${JSON.stringify(path.join(__dirname, 'runTest.ts'))});
+`;
 
-	const relativePath = path.relative(process.env.WEB_PLATFORM_TESTS_PATH, filename);
+function checkBlocklist(normalizedRelativePath: string): string | BlockReasonByTestName | null {
+	const parts = normalizedRelativePath.split('/');
+	for (let i = 1; i <= parts.length; ++i) {
+		const prefix = parts.slice(0, i).join('/');
+		const reason = blocklist[prefix];
+		if (reason) {
+			return reason;
+		}
+	}
+
+	return null;
+}
+
+export default function convertHtmlToTestSuite(src: string, htmlPath: string, rootPath: string) {
+	const relativePath = path.relative(rootPath, htmlPath);
 	const normalizedRelativePath = relativePath.replace(/\\/g, '/');
-	const blacklistReason = blacklist[normalizedRelativePath];
-	if (typeof blacklistReason === 'string') {
-		testSrc.push(`it(${JSON.stringify(blacklistReason)});`);
+
+	const testSrc: string[] = [];
+	testSrc.push(PREAMBLE);
+	testSrc.push(`describe(${JSON.stringify(normalizedRelativePath)}, () => {`);
+
+	const blockReason = checkBlocklist(normalizedRelativePath);
+	if (typeof blockReason === 'string') {
+		testSrc.push(`it.todo(${JSON.stringify(blockReason)});`);
 	} else {
-		testSrc.push(`it('needs to be preprocessed');`);
+		testSrc.push(
+			`const { src, htmlPath, rootPath, blockReasonByTestName } = ${JSON.stringify({
+				src,
+				htmlPath,
+				rootPath,
+				blockReasonByTestName: blockReason || {},
+			})};`
+		);
+		testSrc.push('runTest(src, htmlPath, rootPath, blockReasonByTestName);');
 	}
 
 	testSrc.push('});');

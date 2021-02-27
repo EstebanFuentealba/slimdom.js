@@ -19,6 +19,7 @@
 		"build:api-copy": "copyfiles --flat temp/* api",
 		"build:docs": "api-documenter markdown -i api -o docs",
 		"build": "npm-run-all build:clean build:bundle build:api build:api-copy build:docs",
+		"download-wpt": "ts-node test/web-platform-tests/download-wpt.ts git@github.com:web-platform-tests/wpt.git temp/wpt",
 		"prepare": "npm run build",
 		"test": "jest --coverage --verbose",
 		"test:debug": "node --inspect --debug-brk node_modules/jest/bin/jest.js --runInBand"
@@ -47,6 +48,7 @@
 		"rollup-plugin-terser": "^7.0.2",
 		"sizzle": "^2.3.5",
 		"ts-jest": "~26.5.0",
+		"ts-node": "^9.1.1",
 		"typescript": "^4.1.3"
 	},
 	"prettier": {
