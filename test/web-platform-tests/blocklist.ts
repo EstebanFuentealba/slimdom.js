@@ -228,12 +228,6 @@ const blocklist: Blocklist = {
 	'dom/nodes/Document-getElementsByClassName.html':
 		'Document#getElementsByClassName not implemented',
 	'dom/nodes/Document-getElementsByTagName.html': {
-		'Element in HTML namespace, no prefix, non-ascii characters in name':
-			'HTML casing not implemented',
-		'Element in HTML namespace, prefix, non-ascii characters in name':
-			'HTML casing not implemented',
-		'getElementsByTagName() should be a live collection':
-			'Result is not live in this implementation',
 		Interfaces: 'This implementation uses arrays instead of collection types',
 		"Shouldn't be able to set unsigned properties on a HTMLCollection (non-strict mode)":
 			'This implementation uses arrays instead of collection types',
@@ -247,6 +241,12 @@ const blocklist: Blocklist = {
 			'This implementation uses arrays instead of collection types',
 		'HTML element with uppercase tagName never matches in HTML Documents':
 			'HTML casing not implemented',
+		'Element in HTML namespace, no prefix, non-ascii characters in name':
+			'HTML casing not implemented',
+		'Element in HTML namespace, prefix, non-ascii characters in name':
+			'HTML casing not implemented',
+		'getElementsByTagName() should be a live collection':
+			'Result is not live in this implementation',
 	},
 	'dom/nodes/Document-getElementsByTagName-xhtml.xhtml':
 		'TODO: use XML parser instead of parse5 for xhtml files',
@@ -318,12 +318,38 @@ const blocklist: Blocklist = {
 		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-getElementsByClassName.html':
 		'Element#getElementsByClassName not implemented',
-	'dom/nodes/Element-getElementsByTagName.html':
-		'TODO: also implement getElementsByTagName* for Element',
+	'dom/nodes/Element-getElementsByTagName.html': {
+		Interfaces: 'This implementation uses arrays instead of collection types',
+		"Shouldn't be able to set unsigned properties on a HTMLCollection (non-strict mode)":
+			'This implementation uses arrays instead of collection types',
+		"Shouldn't be able to set unsigned properties on a HTMLCollection (strict mode)":
+			'This implementation uses arrays instead of collection types',
+		'Should be able to set expando shadowing a proto prop (item)':
+			'This implementation uses arrays instead of collection types',
+		'Should be able to set expando shadowing a proto prop (namedItem)':
+			'This implementation uses arrays instead of collection types',
+		'hasOwnProperty, getOwnPropertyDescriptor, getOwnPropertyNames':
+			'This implementation uses arrays instead of collection types',
+		'HTML element with uppercase tagName never matches in HTML Documents':
+			'HTML casing not implemented',
+		'Element in HTML namespace, no prefix, non-ascii characters in name':
+			'HTML casing not implemented',
+		'Element in HTML namespace, prefix, non-ascii characters in name':
+			'HTML casing not implemented',
+		'getElementsByTagName() should be a live collection':
+			'Result is not live in this implementation',
+	},
 	'dom/nodes/Element-getElementsByTagName-change-document-HTMLNess.html':
 		'HTML casing not implemented',
-	'dom/nodes/Element-getElementsByTagNameNS.html':
-		'TODO: also implement getElementsByTagName* for Element',
+	'dom/nodes/Element-getElementsByTagNameNS.html': {
+		'Element.getElementsByTagNameNS':
+			'This implementation uses arrays instead of collection types',
+		'getElementsByTagNameNS() should be a live collection':
+			'Result is not live in this implementation',
+		'Empty string namespace': 'Test expects createElement to use HTML namespace',
+		"getElementsByTagNameNS('http://www.w3.org/1999/xhtml', '*')":
+			'Test expects createElement to use HTML namespace',
+	},
 	'dom/nodes/Element-hasAttribute.html': {
 		'hasAttribute should work with all attribute casings':
 			'HTML case insensitivity not implemented',

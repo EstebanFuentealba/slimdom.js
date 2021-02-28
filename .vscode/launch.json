@@ -7,7 +7,7 @@
 			"request": "launch",
 			"program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
 			"stopOnEntry": false,
-			"args": ["--runInBand"],
+			"args": ["--runInBand", "temp/wpt/dom/nodes/Element-getElementsByTagNameNS.html"],
 			"env": {
 				"WEB_PLATFORM_TESTS_PATH": "${workspaceRoot}/temp/wpt"
 			},
