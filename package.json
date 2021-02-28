@@ -19,7 +19,7 @@
 		"build:api-copy": "copyfiles --flat temp/* api",
 		"build:docs": "api-documenter markdown -i api -o docs",
 		"build": "npm-run-all build:clean build:bundle build:api build:api-copy build:docs",
-		"download-wpt": "ts-node test/web-platform-tests/download-wpt.ts git@github.com:web-platform-tests/wpt.git temp/wpt",
+		"download-wpt": "ts-node test/web-platform-tests/download-wpt.ts https://github.com/web-platform-tests/wpt.git temp/wpt",
 		"prepare": "npm run build",
 		"test": "jest --coverage --verbose",
 		"test:quiet": "jest --clearCache && jest",
