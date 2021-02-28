@@ -44,6 +44,8 @@ const blocklist: Blocklist = {
 		'Toggling element with inline style should make inline style disappear':
 			'style property not implemented',
 	},
+	'dom/nodes/attributes-namednodemap.html':
+		'This implementation uses arrays instead of collection types',
 	'dom/nodes/case.html': 'HTML case behavior not implemented',
 	'dom/nodes/Comment-constructor.html':
 		'ownerDocument does not match document used in test runner',
@@ -53,6 +55,7 @@ const blocklist: Blocklist = {
 	},
 	'dom/nodes/Document-createAttribute.html': {
 		'HTML document.createAttribute("TITLE")': 'HTML attribute lowercasing not implemented',
+		'HTML document.createAttribute("X")': 'HTML attribute lowercasing not implemented',
 	},
 	'dom/nodes/Document-createCDATASection.html': 'HTML documents not implemented',
 	'dom/nodes/Document-createElement.html': 'Document load using iframe not implemented',
@@ -64,6 +67,8 @@ const blocklist: Blocklist = {
 	'dom/nodes/Document-createEvent.https.html': 'Document#createEvent not implemented',
 	'dom/nodes/Document-createTreeWalker.html': 'Document#createTreeWalker not implemented',
 	'dom/nodes/Document-getElementById.html': 'Document#getElementById not implemented',
+	'dom/nodes/Document-getElementsByClassName.html':
+		'Document#getElementsByClassName not implemented',
 	'dom/nodes/Document-getElementsByTagName.html': {
 		'Element in HTML namespace, no prefix, non-ascii characters in name':
 			'HTML casing not implemented',
@@ -97,8 +102,12 @@ const blocklist: Blocklist = {
 	'dom/nodes/Document-URL.sub.html': 'Document#URL not implemented',
 	'dom/nodes/DocumentFragment-constructor.html':
 		'ownerDocument does not match document used in test runner',
+	'dom/nodes/DocumentFragment-getElementById.html':
+		'getElementById and innerHTML setter not implemented',
+	'dom/nodes/DocumentFragment-querySelectorAll-after-modification.html':
+		'DocumentFragment#querySelectorAll not implemented',
 	'dom/nodes/DocumentType-literal.html': 'Depends on HTML parsing',
-	'dom/nodes/DOMImplementation-createDocument.html': {
+	'TODO: dom/nodes/DOMImplementation-createDocument.html': {
 		'createDocument test: metadata for "http://www.w3.org/1999/xhtml","",null':
 			'HTML contentType not implemented',
 		'createDocument test: metadata for "http://www.w3.org/2000/svg","",null':
@@ -121,23 +130,54 @@ const blocklist: Blocklist = {
 		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-childElementCount-nochild-xhtml.xhtml':
 		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-childElementCount-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-children.html': 'Element#children not implemented as HTMLCollection',
 	'dom/nodes/Element-classlist.html': 'Element#classList not implemented',
 	'dom/nodes/Element-closest.html': 'Element#closest not implemented',
+	'dom/nodes/Element-firstElementChild-entity-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-firstElementChild-namespace-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-firstElementChild-xhtml.xhtml':
 		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-getElementsByClassName.html':
 		'Element#getElementsByClassName not implemented',
+	'dom/nodes/Element-getElementsByTagName.html':
+		'TODO: also implement getElementsByTagName* for Element',
+	'dom/nodes/Element-getElementsByTagName-change-document-HTMLNess.html':
+		'HTML casing not implemented',
+	'dom/nodes/Element-getElementsByTagNameNS.html':
+		'TODO: also implement getElementsByTagName* for Element',
+	'dom/nodes/Element-hasAttribute.html': {
+		'hasAttribute should work with all attribute casings':
+			'HTML case insensitivity not implemented',
+	},
 	'dom/nodes/Element-insertAdjacentElement.html': 'Element#insertAdjacentElement not implemented',
 	'dom/nodes/Element-insertAdjacentText.html': 'Element#insertAdjacentText not implemented',
+	'dom/nodes/Element-lastElementChild-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-matches.html': 'Element#matches not implemented',
+	'dom/nodes/Element-matches-namespaced-elements.html': 'Element#matches not implemented',
+	'dom/nodes/Element-nextElementSibling-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-previousElementSibling-xhtml.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
+	'dom/nodes/Element-setAttribute.html': {
+		'setAttribute should lowercase before setting': 'HTML casing not implemented',
+	},
+	'dom/nodes/Element-setAttribute-crbug-1138487.html': 'HTML casing not implemented',
 	'dom/nodes/Element-siblingElement-null-xhtml.xhtml':
 		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Element-tagName.html': 'HTML tagName uppercasing not implemented',
 	'dom/nodes/Element-webkitMatchesSelector.html': 'Element#webkitMatchesSelector not implemented',
+	'dom/nodes/getElementsByClassName-32.html': 'getElementsByClassName not implemented',
+	'dom/nodes/getElementsByClassName-empty-set.html': 'getElementsByClassName not implemented',
+	'dom/nodes/getElementsByClassName-whitespace-class-names.html':
+		'getElementsByClassName not implemented',
 	'dom/nodes/insert-adjacent.html':
 		'Element#insertAdjacentElement / Element#insertAdjacentText not implemented',
-	'dom/nodes/MutationObserver-attributes.html': {
+	'TODO: dom/nodes/MutationObserver-attributes.html': {
 		'attributes Element.id: update, no oldValue, mutation': 'Element#id not implemented',
 		'attributes Element.id: update mutation': 'Element#id not implemented',
 		'attributes Element.id: empty string update mutation': 'Element#id not implemented',
@@ -203,7 +243,7 @@ const blocklist: Blocklist = {
 		'characterData Range.extractContents: child and data removal mutation (2)':
 			'Range#extractContents not implemented',
 	},
-	'dom/nodes/MutationObserver-childList.html': {
+	'TODO: dom/nodes/MutationObserver-childList.html': {
 		'childList Range.deleteContents: child removal mutation':
 			'Range#deleteContents not implemented',
 		'childList Range.deleteContents: child and data removal mutation':
@@ -222,6 +262,10 @@ const blocklist: Blocklist = {
 	'dom/nodes/MutationObserver-document.html': 'Running script during parsing not implemented',
 	'dom/nodes/MutationObserver-inner-outer.html':
 		'Element#innerHTML / Element#outerHTML setters not implemented',
+	'dom/nodes/MutationObserver-sanity.html': {
+		'Should throw if attributeFilter is present and attributes is false':
+			'attributeFilter not implemented',
+	},
 	'dom/nodes/MutationObserver-subtree.html': 'Element#id not implemented',
 	'dom/nodes/Node-baseURI.html': 'Node#baseURI not implemented',
 	'dom/nodes/Node-childNodes.html': 'Node#childNodes not implemented as HTMLCollection',
@@ -352,10 +396,12 @@ const blocklist: Blocklist = {
 		'node with children': 'HTMLElement interfaces not implemented',
 		'Node with custom prototype': 'HTMLElement interfaces not implemented',
 	},
+	'dom/nodes/Node-cloneNode-document-with-doctype.html': 'DOMParser not implemented',
 	'dom/nodes/Node-cloneNode-external-stylesheet-no-bc.sub.html':
 		'innerHTML setter not implemented',
 	'dom/nodes/Node-cloneNode-on-inactive-document-crash.html':
 		'Automatic globals by element id not implemented',
+	'dom/nodes/Node-cloneNode-svg.html': 'querySelector not implemented',
 	'dom/nodes/Node-compareDocumentPosition.html': 'Node#compareDocumentPosition not implemented',
 	'dom/nodes/Node-constants.html': {
 		'Constants for createDocumentPosition on Node interface object.':
@@ -372,7 +418,7 @@ const blocklist: Blocklist = {
 	'dom/nodes/Node-isEqualNode.html': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isEqualNode-iframe1.html': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isEqualNode-iframe2.html': 'Node#isEqualNode not implemented',
-	'dom/nodes/Node-isEqualNode-xhtml.html': 'Node#isEqualNode not implemented',
+	'dom/nodes/Node-isEqualNode-xhtml.xhtml': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isSameNode.html': 'Node#isSameNode not implemented',
 	'dom/nodes/NodeList-Iterable.html': 'NodeList not implemented',
 	'dom/nodes/Node-nodeName.html': {
@@ -385,6 +431,11 @@ const blocklist: Blocklist = {
 		'replaceChild should work in the presence of mutation events.':
 			'Mutation events not implemented',
 	},
+	'dom/nodes/ParentNode-children.html': {
+		'ParentNode.children should be a live collection':
+			'Result is not live in this implementation',
+	},
+	'dom/nodes/ParentNode-replaceChildren.html': 'TODO: implement replaceChildren',
 	'dom/nodes/ParentNode-querySelector-All-content.html':
 		'ParentNode#querySelectorAll not implemented',
 	'dom/nodes/ParentNode-querySelector-All.html': 'ParentNode#querySelectorAll not implemented',
@@ -400,13 +451,18 @@ const blocklist: Blocklist = {
 		'ParentNode#querySelector* not implemented',
 	'dom/nodes/ParentNode-querySelectors-space-and-dash-attribute-value.html':
 		'ParentNode#querySelector* not implemented',
+	'dom/nodes/ProcessingInstruction-escapes-1.xhtml':
+		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/ProcessingInstruction-literal-1.xhtml':
 		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/ProcessingInstruction-literal-2.xhtml':
 		'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/query-target-in-load-event.html': 'ParentNode#querySelector not implemented',
+	'dom/nodes/remove-and-adopt-thcrash.html': 'Automatic globals by element id not implemented',
+	'dom/nodes/remove-from-shadow-host-and-adopt-into-iframe.html': 'Shadow DOM not implemented',
 	'dom/nodes/remove-unscopable.html': 'Methods not implemented',
 	'dom/nodes/rootNode.html': 'Node#getRootNode not implemented',
+	'dom/nodes/svg-template-querySelector.html': 'innerHTML setter not implemented',
 	'dom/nodes/Text-constructor.html': 'ownerDocument does not match document used in test runner',
 	'dom/ranges/Range-cloneContents.html': 'Range#cloneContents not implemented',
 	'dom/ranges/Range-deleteContents.html': 'Range#deleteContents not implemented',
@@ -419,6 +475,21 @@ const blocklist: Blocklist = {
 	'dom/interface-objects.html': 'window not implemented',
 	'dom/interfaces.html': 'WebIDL parsing not implemented',
 	'dom/window-extends-event-target.html': 'window not implemented',
+
+	// TODO:
+	'dom/nodes/ChildNode-after.html': 'TODO: elements should not be self-closing?',
+	'dom/nodes/ChildNode-before.html': 'TODO: elements should not be self-closing?',
+	'dom/nodes/ChildNode-replaceWith.html': 'TODO: elements should not be self-closing?',
+	'dom/nodes/Document-adoptNode.html': {
+		"Adopting an Element called 'x<' should work.": 'TODO',
+	},
+	'dom/nodes/DOMImplementation-createDocument.html': 'TODO',
+	'dom/nodes/MutationObserver-attributes.html': 'TODO',
+	'dom/nodes/MutationObserver-callback-arguments.html': 'TODO',
+	'dom/nodes/MutationObserver-childList.html': 'TODO',
+	'dom/nodes/MutationObserver-takeRecords.html': 'TODO',
+	'dom/nodes/Node-lookupPrefix.xhtml': 'TODO',
+	'dom/nodes/Node-removeChild.html': 'TODO',
 };
 
 export default blocklist;
