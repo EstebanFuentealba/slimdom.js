@@ -203,6 +203,10 @@ const blocklist: Blocklist = {
 	},
 	'dom/nodes/Comment-constructor.html':
 		'ownerDocument does not match document used in test runner',
+	'dom/nodes/Document-adoptNode.html': {
+		"Adopting an Element called 'x<' should work.":
+			'HTML-specific serialization not implemented (test harness fails because innerHTML throws for XML documents)',
+	},
 	'dom/nodes/Document-characterSet-normalization.html': 'Document#characterSet not implemented',
 	'dom/nodes/Document-constructor.html': {
 		'new Document(): URL parsing': 'HTMLAnchorElement not implemented',
@@ -261,11 +265,28 @@ const blocklist: Blocklist = {
 	'dom/nodes/DocumentFragment-querySelectorAll-after-modification.html':
 		'DocumentFragment#querySelectorAll not implemented',
 	'dom/nodes/DocumentType-literal.html': 'Depends on HTML parsing',
-	'TODO: dom/nodes/DOMImplementation-createDocument.html': {
+	'dom/nodes/DOMImplementation-createDocument.html': {
 		'createDocument test: metadata for "http://www.w3.org/1999/xhtml","",null':
 			'HTML contentType not implemented',
 		'createDocument test: metadata for "http://www.w3.org/2000/svg","",null':
 			'SVG contentType not implemented',
+		'createDocument test: null,"\u0BC6foo",null,null': 'TODO: update Name to XML fifth edition',
+		'createDocument test: metadata for null,"\u0BC6foo",null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: characterSet aliases for null,"\u0BC6foo",null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: "http://example.com/","a:\u0BC6",null,null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: metadata for "http://example.com/","a:\u0BC6",null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: characterSet aliases for "http://example.com/","a:\u0BC6",null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: "http://example.com/","\u0BC6:a",null,null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: metadata for "http://example.com/","\u0BC6:a",null':
+			'TODO: update Name to XML fifth edition',
+		'createDocument test: characterSet aliases for "http://example.com/","\u0BC6:a",null':
+			'TODO: update Name to XML fifth edition',
 	},
 	'dom/nodes/DOMImplementation-createDocument-with-null-browsing-context-crash.html':
 		'Automatic globals by element id not implemented',
@@ -632,10 +653,6 @@ const blocklist: Blocklist = {
 	'dom/window-extends-event-target.html': 'window not implemented',
 
 	// TODO:
-	'dom/nodes/Document-adoptNode.html': {
-		"Adopting an Element called 'x<' should work.": 'TODO',
-	},
-	'dom/nodes/DOMImplementation-createDocument.html': 'TODO',
 	'dom/nodes/MutationObserver-attributes.html': 'TODO',
 	'dom/nodes/MutationObserver-callback-arguments.html': 'TODO',
 	'dom/nodes/MutationObserver-childList.html': 'TODO',

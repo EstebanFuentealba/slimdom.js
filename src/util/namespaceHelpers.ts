@@ -143,23 +143,21 @@ export function matchesNameProduction(name: string): boolean {
 }
 
 /**
- * As we're already testing against Name, testing QName validity can be reduced to checking if the
- * name contains at most a single colon which is not at the first or last position.
- *
  * @param name - The name to check
  *
  * @returns True if the name is a valid QName, provided it is also a valid Name, otherwise false
  */
 function isValidQName(name: string): boolean {
+	// (QName is basically NCName | (NCName ':' NCName) where NCName is Name without ':', so here we
+	// check that name contains at most a single colon, and that the other parts are valid Names)
 	const parts = name.split(':');
 	if (parts.length > 2) {
+		// Too many colons
 		return false;
 	}
-	if (parts.length === 1) {
-		return true;
-	}
-	// First part should not be empty, and the second part should be a valid name
-	return parts[0].length > 0 && matchesNameProduction(parts[1]);
+	// Each part should be a valid Name - we already know they don't contain ':', so a valid Name
+	// here also means a valid NCName
+	return parts.every((part) => matchesNameProduction(part));
 }
 
 /**
@@ -168,11 +166,9 @@ function isValidQName(name: string): boolean {
  * @param qualifiedName - Qualified name to validate
  */
 export function validateQualifiedName(qualifiedName: string): void {
-	// throw an InvalidCharacterError if qualifiedName does not match the Name or QName production.
-	// (QName is basically (Name without ':') ':' (Name without ':'), so just check the position of
-	// the ':')
-	if (!isValidQName(qualifiedName) || !matchesNameProduction(qualifiedName)) {
-		throwInvalidCharacterError('The qualified name is not a valid Name or QName');
+	// throw an InvalidCharacterError if qualifiedName does not match the QName production.
+	if (!isValidQName(qualifiedName)) {
+		throwInvalidCharacterError('The qualified name is not a valid QName');
 	}
 }
 
