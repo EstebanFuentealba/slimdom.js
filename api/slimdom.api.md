@@ -146,6 +146,8 @@ export class Document extends Node implements NonElementParentNode, ParentNode {
     // (undocumented)
     prepend(...nodes: (Node | string)[]): void;
     // (undocumented)
+    replaceChildren(...nodes: (Node | string)[]): void;
+    // (undocumented)
     get textContent(): string | null;
     set textContent(_newValue: string | null);
 }
@@ -180,6 +182,8 @@ export class DocumentFragment extends Node implements NonElementParentNode, Pare
     set nodeValue(newValue: string | null);
     // (undocumented)
     prepend(...nodes: (Node | string)[]): void;
+    // (undocumented)
+    replaceChildren(...nodes: (Node | string)[]): void;
     // (undocumented)
     get textContent(): string | null;
     set textContent(newValue: string | null);
@@ -216,6 +220,19 @@ export class DocumentType extends Node implements ChildNode {
     set textContent(_newValue: string | null);
 }
 
+// @public
+export class DOMException extends Error {
+    constructor(message?: string, name?: string);
+    // (undocumented)
+    readonly code: number;
+    // (undocumented)
+    readonly message: string;
+    // (undocumented)
+    readonly name: string;
+    // (undocumented)
+    readonly stack: string | undefined;
+}
+
 // @public (undocumented)
 export class DOMImplementation {
     constructor(document: Document);
@@ -245,6 +262,8 @@ export class Element extends Node implements ParentNode, NonDocumentTypeChildNod
     getAttributeNode(qualifiedName: string): Attr | null;
     getAttributeNodeNS(namespace: string | null, localName: string): Attr | null;
     getAttributeNS(namespace: string | null, localName: string): string | null;
+    getElementsByTagName(qualifiedName: string): Element[];
+    getElementsByTagNameNS(namespace: string | null, localName: string): Element[];
     hasAttribute(qualifiedName: string): boolean;
     hasAttributeNS(namespace: string | null, localName: string): boolean;
     hasAttributes(): boolean;
@@ -280,6 +299,8 @@ export class Element extends Node implements ParentNode, NonDocumentTypeChildNod
     removeAttribute(qualifiedName: string): void;
     removeAttributeNode(attr: Attr): Attr;
     removeAttributeNS(namespace: string | null, localName: string): void;
+    // (undocumented)
+    replaceChildren(...nodes: (Node | string)[]): void;
     // (undocumented)
     replaceWith(...nodes: (Node | string)[]): void;
     setAttribute(qualifiedName: string, value: string): void;

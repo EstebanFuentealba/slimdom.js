@@ -25,6 +25,11 @@ const codeByName: Record<string, number> = {
 	InvalidNodeTypeError: 24,
 };
 
+/**
+ * Exception type used for DOM errors
+ *
+ * @public
+ */
 export class DOMException extends Error {
 	public readonly name: string;
 	public readonly message: string;
