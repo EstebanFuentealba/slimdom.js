@@ -809,12 +809,12 @@ function convertNodesIntoNode(nodes: (Node | string)[], document: Document): Nod
 /**
  * The prepend(nodes) method, when invoked, must run these steps:
  *
- * @param contextObject The ParentNode on which the method is invoked
- * @param nodes         The nodes (and/or strings) to prepend
+ * @param contextObject - The ParentNode on which the method is invoked
+ * @param nodes         - The nodes (and/or strings) to prepend
  */
 export function prependNodes(contextObject: Node & ParentNode, nodes: (Node | string)[]): void {
-	// 1. Let node be the result of converting nodes into a node given nodes and context object’s
-	// node document.
+	// 1. Let node be the result of converting nodes into a node given nodes and this’s node
+	// document.
 	const node = convertNodesIntoNode(nodes, getNodeDocument(contextObject));
 
 	// 2. Pre-insert node into context object before the context object’s first child.
@@ -824,16 +824,34 @@ export function prependNodes(contextObject: Node & ParentNode, nodes: (Node | st
 /**
  * The append(nodes) method, when invoked, must run these steps:
  *
- * @param contextObject The ParentNode on which the method is invoked
- * @param nodes         The nodes (and/or strings) to append
+ * @param contextObject - The ParentNode on which the method is invoked
+ * @param nodes         - The nodes (and/or strings) to append
  */
 export function appendNodes(contextObject: Node & ParentNode, nodes: (Node | string)[]): void {
-	// 1. Let node be the result of converting nodes into a node given nodes and context object’s
-	// node document.
+	// 1. Let node be the result of converting nodes into a node given nodes and this’s node
+	// document.
 	const node = convertNodesIntoNode(nodes, getNodeDocument(contextObject));
 
 	// 2. Append node to context object
 	appendNode(node, contextObject);
+}
+
+/**
+ * The replaceChildren(nodes) method, when invoked, must run these steps:
+ *
+ * @param contextObject - The ParentNode on which the method is invoked
+ * @param nodes         - The nodes (and/or strings) with which to replace contextObject's children
+ */
+export function replaceChildren(contextObject: Node & ParentNode, nodes: (Node | string)[]): void {
+	// 1. Let node be the result of converting nodes into a node given nodes and this’s node
+	// document.
+	const node = convertNodesIntoNode(nodes, getNodeDocument(contextObject));
+
+	// 2. Ensure pre-insertion validity of node into this before null.
+	ensurePreInsertionValidity(node, contextObject, null);
+
+	// 3. Replace all with node within this.
+	replaceAllWithNode(node, contextObject);
 }
 
 /**

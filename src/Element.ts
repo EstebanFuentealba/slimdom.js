@@ -14,6 +14,7 @@ import {
 	insertNodesAfter,
 	replaceWithNodes,
 	removeFromParent,
+	replaceChildren,
 } from './util/mutationAlgorithms';
 import {
 	appendAttribute,
@@ -173,6 +174,10 @@ export default class Element
 
 	public append(...nodes: (Node | string)[]): void {
 		appendNodes(this, nodes);
+	}
+
+	public replaceChildren(...nodes: (Node | string)[]): void {
+		replaceChildren(this, nodes);
 	}
 
 	// NonDocumentTypeChildNode

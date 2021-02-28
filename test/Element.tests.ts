@@ -766,6 +766,20 @@ describe('Element', () => {
 		});
 	});
 
+	describe('.replaceChildren', () => {
+		it('can replace all children', () => {
+			const child = element.appendChild(document.createElement('test'));
+			const comment = document.createComment('test');
+			const pi = document.createProcessingInstruction('target', 'data');
+
+			element.replaceChildren(comment, pi);
+
+			expect(child.parentNode).toBe(null);
+			expect(element.firstChild).toBe(comment);
+			expect(element.lastChild).toBe(pi);
+		});
+	});
+
 	describe('.getElementsByTagName', () => {
 		it('can find all descendants matching the given qualifiedName', () => {
 			const root = document.appendChild(document.createElement('root'));

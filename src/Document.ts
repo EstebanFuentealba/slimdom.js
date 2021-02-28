@@ -18,7 +18,7 @@ import {
 	throwInvalidCharacterError,
 	throwNotSupportedError,
 } from './util/errorHelpers';
-import { adoptNode, appendNodes, prependNodes } from './util/mutationAlgorithms';
+import { adoptNode, appendNodes, prependNodes, replaceChildren } from './util/mutationAlgorithms';
 import { NodeType, isNodeOfType } from './util/NodeType';
 import { matchesNameProduction, validateAndExtract } from './util/namespaceHelpers';
 import { asNullableString, asObject } from './util/typeHelpers';
@@ -109,6 +109,10 @@ export default class Document extends Node implements NonElementParentNode, Pare
 
 	public append(...nodes: (Node | string)[]): void {
 		appendNodes(this, nodes);
+	}
+
+	public replaceChildren(...nodes: (Node | string)[]): void {
+		replaceChildren(this, nodes);
 	}
 
 	// Document

@@ -150,4 +150,18 @@ describe('DocumentFragment', () => {
 			expect(fragment.lastChild).toBe(pi);
 		});
 	});
+
+	describe('.replaceChildren', () => {
+		it('can replace all children', () => {
+			const element = fragment.appendChild(document.createElement('test'));
+			const comment = document.createComment('test');
+			const pi = document.createProcessingInstruction('target', 'data');
+
+			fragment.replaceChildren(comment, pi);
+
+			expect(element.parentNode).toBe(null);
+			expect(fragment.firstChild).toBe(comment);
+			expect(fragment.lastChild).toBe(pi);
+		});
+	});
 });

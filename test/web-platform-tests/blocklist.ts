@@ -637,7 +637,6 @@ const blocklist: Blocklist = {
 		'ParentNode.children should be a live collection':
 			'Result is not live in this implementation',
 	},
-	'dom/nodes/ParentNode-replaceChildren.html': 'TODO: implement replaceChildren',
 	'dom/nodes/ParentNode-querySelector-All-content.html':
 		'ParentNode#querySelectorAll not implemented',
 	'dom/nodes/ParentNode-querySelector-All.html': 'ParentNode#querySelectorAll not implemented',

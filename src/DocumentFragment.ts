@@ -9,6 +9,7 @@ import {
 	prependNodes,
 	getConcatenatedTextNodesData,
 	setTextContentByReplacing,
+	replaceChildren,
 } from './util/mutationAlgorithms';
 import { NodeType } from './util/NodeType';
 import { ifNullActAsIfEmptyString } from './util/typeHelpers';
@@ -86,6 +87,10 @@ export default class DocumentFragment extends Node implements NonElementParentNo
 
 	public append(...nodes: (Node | string)[]): void {
 		appendNodes(this, nodes);
+	}
+
+	public replaceChildren(...nodes: (Node | string)[]): void {
+		replaceChildren(this, nodes);
 	}
 
 	/**

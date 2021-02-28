@@ -442,4 +442,18 @@ describe('Document', () => {
 			expect(() => document.append('text')).toThrow('HierarchyRequestError');
 		});
 	});
+
+	describe('.replaceChildren', () => {
+		it('can replace all children', () => {
+			const element = document.appendChild(document.createElement('test'));
+			const comment = document.createComment('test');
+			const pi = document.createProcessingInstruction('target', 'data');
+
+			document.replaceChildren(comment, pi);
+
+			expect(element.parentNode).toBe(null);
+			expect(document.firstChild).toBe(comment);
+			expect(document.lastChild).toBe(pi);
+		});
+	});
 });
