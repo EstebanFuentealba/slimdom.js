@@ -130,10 +130,6 @@ function createStubEnvironment(
 			}
 		},
 
-		// WPT tests check if error constructors match the global DOMException, but in slimdom
-		// these are all plain Error instances with a few extra properties
-		DOMException: Error,
-
 		...domInterfaces,
 	};
 	global.window = global;

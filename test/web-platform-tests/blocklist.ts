@@ -47,6 +47,160 @@ const blocklist: Blocklist = {
 	'dom/nodes/attributes-namednodemap.html':
 		'This implementation uses arrays instead of collection types',
 	'dom/nodes/case.html': 'HTML case behavior not implemented',
+	'dom/nodes/ChildNode-after.html': {
+		'Comment.after() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Comment.after() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.after() with context object itself and node as the arguments, switching positions.':
+			'HTML-specific serialization not implemented',
+		'Comment.after() with all siblings of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with some siblings of child as arguments; no changes in tree; viable sibling is first child.':
+			'HTML-specific serialization not implemented (nice, copy paste error in this test name)',
+		'Comment.after() with some siblings of child as arguments; no changes in tree.':
+			'HTML-specific serialization not implemented',
+		'Comment.after() when pre-insert behaves like append.':
+			'HTML-specific serialization not implemented',
+		'Comment.after() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.after() without any argument.': 'HTML-specific serialization not implemented',
+		'Element.after() with null as an argument.': 'HTML-specific serialization not implemented',
+		'Element.after() with undefined as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with only text as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with context object itself as the argument.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with context object itself and node as the arguments, switching positions.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with all siblings of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with some siblings of child as arguments; no changes in tree; viable sibling is first child.':
+			'HTML-specific serialization not implemented (another copy-paste error in test name)',
+		'Element.after() with some siblings of child as arguments; no changes in tree.':
+			'HTML-specific serialization not implemented',
+		'Element.after() when pre-insert behaves like append.':
+			'HTML-specific serialization not implemented',
+		'Element.after() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.after() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Text.after() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.after() with context object itself and node as the arguments, switching positions.':
+			'HTML-specific serialization not implemented',
+		'Text.after() with all siblings of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with some siblings of child as arguments; no changes in tree; viable sibling is first child.':
+			'HTML-specific serialization not implemented (copy-paste error in test name)',
+		'Text.after() with some siblings of child as arguments; no changes in tree.':
+			'HTML-specific serialization not implemented',
+		'Text.after() when pre-insert behaves like append.':
+			'HTML-specific serialization not implemented',
+		'Text.after() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+	},
+	'dom/nodes/ChildNode-before.html': {
+		'Comment.before() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with context object itself and node as the arguments, switching positions.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with all siblings of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with some siblings of child as arguments; no changes in tree; viable sibling is first child.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with some siblings of child as arguments; no changes in tree.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() when pre-insert behaves like prepend.':
+			'HTML-specific serialization not implemented',
+		'Comment.before() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.before() without any argument.': 'HTML-specific serialization not implemented',
+		'Element.before() with null as an argument.': 'HTML-specific serialization not implemented',
+		'Element.before() with undefined as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with only text as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with context object itself as the argument.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with context object itself and node as the arguments, switching positions.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with all siblings of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with some siblings of child as arguments; no changes in tree; viable sibling is first child.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with some siblings of child as arguments; no changes in tree.':
+			'HTML-specific serialization not implemented',
+		'Element.before() when pre-insert behaves like prepend.':
+			'HTML-specific serialization not implemented',
+		'Element.before() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with context object itself and node as the arguments, switching positions.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with all siblings of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with some siblings of child as arguments; no changes in tree; viable sibling is first child.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with some siblings of child as arguments; no changes in tree.':
+			'HTML-specific serialization not implemented',
+		'Text.before() when pre-insert behaves like prepend.':
+			'HTML-specific serialization not implemented',
+		'Text.before() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+	},
+	'dom/nodes/ChildNode-replaceWith.html': {
+		'Comment.replaceWith() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Comment.replaceWith() with sibling of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.replaceWith() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.replaceWith() with one sibling of child and child itself as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.replaceWith() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Comment.replaceWith() on a parentless child with two elements as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.replaceWith() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Element.replaceWith() with sibling of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.replaceWith() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.replaceWith() with one sibling of child and child itself as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.replaceWith() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Element.replaceWith() on a parentless child with two elements as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.replaceWith() with only one element as an argument.':
+			'HTML-specific serialization not implemented',
+		'Text.replaceWith() with sibling of child as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.replaceWith() with one sibling of child and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.replaceWith() with one sibling of child and child itself as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.replaceWith() with one element and text as arguments.':
+			'HTML-specific serialization not implemented',
+		'Text.replaceWith() on a parentless child with two elements as arguments.':
+			'HTML-specific serialization not implemented',
+	},
 	'dom/nodes/Comment-constructor.html':
 		'ownerDocument does not match document used in test runner',
 	'dom/nodes/Document-characterSet-normalization.html': 'Document#characterSet not implemented',
@@ -421,6 +575,7 @@ const blocklist: Blocklist = {
 	'dom/nodes/Node-isEqualNode-xhtml.xhtml': 'Node#isEqualNode not implemented',
 	'dom/nodes/Node-isSameNode.html': 'Node#isSameNode not implemented',
 	'dom/nodes/NodeList-Iterable.html': 'NodeList not implemented',
+	'dom/nodes/Node-lookupPrefix.xhtml': 'TODO: use XML parser instead of parse5 for xhtml files',
 	'dom/nodes/Node-nodeName.html': {
 		'For Element nodes, nodeName should return the same as tagName.':
 			'HTML tagName uppercasing not implemented',
@@ -477,9 +632,6 @@ const blocklist: Blocklist = {
 	'dom/window-extends-event-target.html': 'window not implemented',
 
 	// TODO:
-	'dom/nodes/ChildNode-after.html': 'TODO: elements should not be self-closing?',
-	'dom/nodes/ChildNode-before.html': 'TODO: elements should not be self-closing?',
-	'dom/nodes/ChildNode-replaceWith.html': 'TODO: elements should not be self-closing?',
 	'dom/nodes/Document-adoptNode.html': {
 		"Adopting an Element called 'x<' should work.": 'TODO',
 	},
@@ -488,8 +640,6 @@ const blocklist: Blocklist = {
 	'dom/nodes/MutationObserver-callback-arguments.html': 'TODO',
 	'dom/nodes/MutationObserver-childList.html': 'TODO',
 	'dom/nodes/MutationObserver-takeRecords.html': 'TODO',
-	'dom/nodes/Node-lookupPrefix.xhtml': 'TODO',
-	'dom/nodes/Node-removeChild.html': 'TODO',
 };
 
 export default blocklist;
