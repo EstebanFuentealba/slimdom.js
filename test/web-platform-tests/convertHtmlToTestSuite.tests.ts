@@ -18,7 +18,7 @@ runTest(src, htmlPath, rootPath, blockReasonByTestName);
 	});
 
 	it('handles the blocklist', () => {
-		expect(convertHtmlToTestSuite('Ignored', 'root\\dom\\historical.html', 'root'))
+		expect(convertHtmlToTestSuite('Ignored', 'root/dom/historical.html', 'root'))
 			.toBe(`${PREAMBLE}
 describe("dom/historical.html", () => {
 it.todo("WebIDL parsing not implemented");
