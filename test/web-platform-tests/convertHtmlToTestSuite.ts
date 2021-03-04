@@ -3,7 +3,7 @@ import * as path from 'path';
 import blocklist, { BlockReasonByTestName } from './blocklist';
 
 export const PREAMBLE = `
-require("ts-node/register");
+require(${JSON.stringify(require.resolve('ts-node/register'))});
 const { runTest } = require(${JSON.stringify(path.join(__dirname, 'runTest.ts'))});
 `;
 
