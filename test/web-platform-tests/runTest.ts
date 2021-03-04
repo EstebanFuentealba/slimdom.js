@@ -34,28 +34,6 @@ export function parseHtml(html: string): slimdom.Document {
 		});
 		return element;
 	};
-	// Patch DomTreeAdapter's setDocumentType to preserve node ordering under the document node
-	// see https://github.com/nrkn/dom-treeadapter/issues/4
-	treeAdapter.setDocumentType = (
-		document: slimdom.Document,
-		name: string,
-		publicId: string | null,
-		systemId: string | null
-	) => {
-		const doctype = document.implementation.createDocumentType(
-			name,
-			publicId || '',
-			systemId || ''
-		);
-
-		if (document.doctype) {
-			document.replaceChild(doctype, document.doctype);
-		} else if (document.documentElement) {
-			document.insertBefore(doctype, document.documentElement);
-		} else {
-			document.appendChild(doctype);
-		}
-	};
 	return parse(html, { treeAdapter }) as slimdom.Document;
 }
 

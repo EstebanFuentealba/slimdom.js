@@ -671,6 +671,7 @@ const blocklist: Blocklist = {
 	'dom/ranges/Range-insertNode.html': 'Range#insertNode not implemented',
 	'dom/ranges/Range-stringifier.html': 'Range#toString not implemented',
 	'dom/ranges/Range-surroundContents.html': 'Range#surroundContents not implemented',
+	'dom/slot-recalc.html': 'Shadow DOM not implemented',
 	'dom/traversal': 'NodeIterator and TreeWalker not implemented',
 	'dom/historical.html': 'WebIDL parsing not implemented',
 	'dom/interface-objects.html': 'window not implemented',
