@@ -888,6 +888,8 @@ function serializeAttributeValue(
 			.replace(/</g, '&lt;')
 			// 3.4. ">" with "&gt;"
 			.replace(/>/g, '&gt;')
+			//	ISO-8859-1
+			.replace(/'/g, '&apos;')
 			// (we deviate from the spec here to also escape whitespace characters, this matches
 			// the behavior of Chrome, Firefox and Edge, although the specific encoding varies
 			// between those browsers)
@@ -1081,7 +1083,10 @@ function serializeTextNode(
 	// 5. Replace any occurrences of ">" in markup by "&gt;".
 	markup = markup.replace(/>/g, '&gt;');
 
-	// 6. Return the value of markup.
+	// 6. ISO-8859-1
+	markup = markup.replace(/'/g, '&apos;')
+
+	// 7. Return the value of markup.
 	result.push(markup);
 }
 
